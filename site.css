@@ -1,0 +1,388 @@
+#dvLeftPannel,
+#dvRightPannel {
+    background: #f7f3f3;
+}
+
+#toolBoxList {
+    height: 500px;
+}
+
+.card {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+#dvDesignerPannel {
+    height: 600px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#dvDesignerPannel {
+    position: relative;
+    --s: 153.6px;
+    /* control the size */
+    --_g: #0000 90deg, #e6e3e3 0;
+    background: conic-gradient(from 90deg at 2px 2px, var(--_g)) 0 0/var(--s) var(--s), conic-gradient(from 90deg at 1px 1px, var(--_g)) 0 0/calc(var(--s)/5) calc(var(--s)/5);
+}
+
+
+/* Line 1 */
+.dvHorizontalLine1 {
+    content: "";
+    position: absolute;
+    background: #ffcdbe;
+    height: 2px;
+    width: 100%;
+    top: 20.5%;
+    right: 0%;
+    cursor: move;
+}
+
+/* Text 1 - Company Text */
+.dvCompanyText::before {
+    content: "Section 1";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #dbdbdb8c;
+}
+
+/* Line 2 */
+.dvHorizontalLine2 {
+    content: "";
+    position: absolute;
+    background: #ffcdbe;
+    height: 2px;
+    width: 100%;
+    top: 51.1%;
+    right: 0%;
+    cursor: move;
+}
+
+/* Text 2 - Customer Text */
+.dvCustomerText::before {
+    content: "Section 2";
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #dbdbdb8c;
+}
+
+/* Line 3 */
+.dvHorizontalLine3 {
+    content: "";
+    position: absolute;
+    background: #ffcdbe;
+    height: 2px;
+    width: 100%;
+    top: 76.8%;
+    right: 0%;
+    cursor: move;
+}
+
+/* Text 3 - Details Text */
+.dvDetailsText::before {
+    content: "Section 3";
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #dbdbdb8c;
+}
+
+/* Text 4 - Footer Text */
+.dvFooterText::before {
+    content: "Section 4";
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: #dbdbdb8c;
+}
+
+.dvHorizontalLine1,
+.dvHorizontalLine2,
+.dvHorizontalLine3 {
+    transition: height 0.3s ease;
+}
+
+.dvHorizontalLine1:hover,
+.dvHorizontalLine2:hover,
+.dvHorizontalLine3:hover {
+    height: 4px !important;
+}
+
+.dv-default-toolbox p {
+    margin: 0 0 5px;
+}
+
+.toolBoxList .dragable-items {
+    border: 1px solid #c1c1c1;
+    padding: 2px;
+    cursor: grab;
+}
+
+.lbl-toolTypeHeader {
+    cursor: pointer;
+}
+
+#dvRightPannel input,
+#dvRightPannel select {
+    width: 60%;
+    float: right;
+    margin-top: 3px;
+}
+
+
+#dvRightPannel label {
+    padding: 5px 0 5px 0;
+}
+
+.font-style span i,
+.font-style span b,
+.font-style span u {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 15px;
+}
+
+.font-style span i:hover,
+.font-style span b:hover,
+.font-style span u:hover {
+    background-color: #9a9ab7;
+}
+
+@media screen and (max-width : 768px) {
+    #dvDesignerPannel {
+        overflow-y: scroll;
+    }
+}
+
+.droppable {
+    position: absolute;
+    z-index: -1;
+    border: 2px dashed transparent;
+    pointer-events: none;
+}
+
+.dragable-items:hover {
+    border-color: #a49999;
+}
+
+
+.close-icon {
+    position: absolute;
+    top: -11px;
+    font-size: 12px;
+    color: #f47b7b;
+    cursor: pointer;
+}
+
+.close-icon:hover {
+    background-color: white;
+    color: #f47b7b;
+}
+
+
+.input-close-icon {
+    position: absolute;
+    top: -15px;
+    font-size: 12px;
+    color: #f47b7b;
+    cursor: pointer;
+    left: 0;
+}
+
+
+.input-close-icon:hover {
+    background-color: white;
+    color: #f47b7b;
+}
+
+
+.input-drag-icon {
+    position: absolute;
+    top: -15px;
+    font-size: 12px;
+    color: #28a745;
+    cursor: grab;
+    left: 20px;
+}
+
+#dvDesignerPannel .textarea:focus {
+    border-color: #007bff;
+    cursor: text;
+}
+
+/*Vertical line drag command drop*/
+.vertical-line {
+    position: absolute;
+    width: 1px;
+    height: 100px;
+    background-color: #000;
+    transition: width 0.3s;
+}
+
+.vertical-line::before {
+    content: '';
+    position: absolute;
+    border-left: 1px solid #000;
+    transform: translateX(-50%);
+}
+
+/*@to do its not woking*/
+.draggable-item .vertical-line:focus {
+    width: 2px !important;
+}
+
+.vline-drag-icon {
+    position: absolute;
+    top: 25px;
+    font-size: 12px;
+    color: #28a745;
+    cursor: grab;
+    left: -15px;
+}
+
+.vline-close-icon {
+    position: absolute;
+    top: 0px;
+    font-size: 12px;
+    color: #f47b7b;
+    cursor: pointer;
+    right: 4px;
+}
+
+/*Horizontal line drag command drop*/
+.horizontal-line {
+    height: 1px;
+    border-top: 1px solid #000;
+    /*background-color: #000;*/
+    width: 200px;
+}
+
+.horizontal-line:hover {
+    height: 2px;
+    /*background-color: #8e8989;*/
+    transition: height 0.3s;
+}
+
+.hline-drag-icon {
+    position: absolute;
+    top: -15px;
+    font-size: 12px;
+    color: #28a745;
+    cursor: grab;
+    left: 20px;
+}
+
+.hline-close-icon {
+    position: absolute;
+    top: -15px;
+    font-size: 12px;
+    color: #f47b7b;
+    cursor: pointer;
+    left: 0px;
+}
+
+
+#line-solid-maker i {
+    width: 22px;
+    height: 1px;
+    background-color: #000;
+    padding: 0;
+}
+
+#line-solid-maker {
+    padding: 7px;
+    cursor: pointer;
+}
+
+#line-solid-maker:hover {
+    background-color: #9a9ab7 !important;
+}
+
+#line-type-maker {
+    padding-bottom: 12px;
+}
+
+.sysDataSet_clone {
+    border: 1px solid #d0d0d0;
+    background-color: #eee;
+}
+
+#dvDesignerPannel readonly-textarea:focus {
+    border-color: #007bff;
+    cursor: default;
+}
+
+
+.used-icon {
+    padding-top: 4px;
+    padding-right: 8px;
+    position: relative;
+}
+
+.used-icon-counter {
+    color: #e30000;
+    position: absolute;
+    margin-top: -6px;
+    font-size: 10px;
+}
+
+/*div right click custom options*/
+#customContextMenu {
+    position: absolute;
+    background-color: #3c3c3c;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    z-index: 2;
+    color: white;
+    width: 16%;
+}
+
+#customContextMenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#customContextMenu li {
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#customContextMenu li:hover {
+    background-color: #777575;
+}
+
+/*end div right click custom options*/
+
+
+.toast-message {
+    position: fixed;
+    bottom: 20px;
+    /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 9999;
+    /* Ensure it's above other content */
+    display: none;
+    /* Hidden by default */
+}
+
+#previewModal {
+    backdrop-filter: blur(2px);
+}

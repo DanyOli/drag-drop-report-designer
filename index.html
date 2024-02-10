@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+
+    <title>Report Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="site.css" rel="stylesheet" />
+
+    <style>
+        .form-control-sm {
+            min-height: calc(1.5em + (.5rem + 2px)) !important;
+            padding: .25rem .5rem !important;
+            font-size: .875rem !important;
+            border-radius: .2rem !important;
+        }
+
+        .clear-search:hover {
+            color: #695aa6;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        #clear-search {
+            padding-left: 5px;
+        }
+
+        .font-size-medium {
+            font-size: 15px;
+        }
+
+        .d-inline-flex {
+            display: flex;
+        }
+
+        #dvDesignerPannel .fa {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="mt-2">
+    <section class="content-header">
+        <!-- Custom toast message-->
+        <span id="spnToastMessage" class="toast-message"></span>
+        <h1 class="text-center">Report Designer </h1>
+    </section>
+
+    <section class="content container-fluid">
+        <div class="box">
+            <div class="box-body">
+                <div class="row">
+
+                    <!--Tool Box Section-->
+                    <div class="col-md-2" id="dvLeftPannel">
+
+                        <label class="form-label mt-2 mb-2">Select Report Type <small
+                                class="text-danger">*</small></label>
+                        <select class="form-control" id="Report_Type" name="Report_Type">
+                            <option value="">-- Select Option --</option>
+                            <option value="SalesBill">Sales Bill</option>
+                            <option value="PurchaseBill">Purchase Bill</option>
+                        </select>
+
+                        <div>
+                            <label class="form-label mt-2 mb-2">Report Name <small class="text-danger">*</small>
+                            </label>
+                            <div class="d-inline-flex">
+                                <input type="text" id="txtReportName" class="form-control" style="width: 83%;" />
+                                <button id="btnLoadReport" class="btn btn-primary btn-sm" style="padding: 2px 10px;"
+                                    title="Load Report"><i class="fa fa-sign-in"
+                                        style="transform: rotate(88deg);"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="toolBoxList">
+
+                            <div class="dv-default-toolbox">
+                                <!--default Items-->
+                                <div class="default-toolBoxList mt-2">
+                                <h5 for="">Default Items</h5>
+                                </div>
+                                <p data-id="tbLabel" class="dragable-items" draggable="true">Label</p>
+                                <p data-id="tbVerticalLine" class="dragable-items" draggable="true">Vertical Line
+                                </p>
+                                <p data-id="tbHorizontalLine" class="dragable-items" draggable="true">Horizontal
+                                    Line
+                                </p>
+
+                                <!--system Dataset-->
+                                <hr>
+                                <h5 for="">Dataset</h5>
+                                <div class="default-toolBoxList">
+                                    <input id="txt-search-dataset" class="form-control" placeholder="Search..." style="width:90%" />
+                                    <a href="javascript:;" id="clear-search" class="d-none"><i class="fa fa-close text-sm text-danger"></i></a>
+                                </div>
+                                <div class="mt-3" id="collapseSystem" style="height:370px;overflow: auto;">
+                                    <div id="sysDataSetMastList" class="dataset-list-toggle">
+                                        <p data-id="bill" class="dragable-items" draggable="true">Bill No</p>
+                                        <p data-id="date" class="dragable-items" draggable="true">Date</p>
+                                        <p data-id="tm" class="dragable-items" draggable="true">Time</p>
+                                        <p data-id="cmp" class="dragable-items" draggable="true">Company</p>
+                                        <p data-id="add" class="dragable-items" draggable="true">Address</p>
+                                        <p data-id="ty" class="dragable-items" draggable="true">Type</p>
+                                        <p data-id="cnt" class="dragable-items" draggable="true">Contact</p>
+                                        <p data-id="gm" class="dragable-items" draggable="true">Gmail</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Designer Section-->
+                    <div class="card col-md-8" id="dvDesignerPannel" style="width:794px !important">
+                        <!--horizontal red line and large section text(Placeholder)-->
+                        <div id="dvGraphLine">
+                            <div class="dvHorizontalLine1"></div>
+                            <div class="dvCompanyText"></div>
+                            <div class="dvHorizontalLine2"></div>
+                            <div class="dvCustomerText"></div>
+                            <div class="dvHorizontalLine3"></div>
+                            <div class="dvDetailsText"></div>
+                            <div class="dvFooterText"></div>
+                        </div>
+                    </div>
+
+                    <!--Options & Text Formatting Section-->
+                    <div class="col-md-2" id="dvRightPannel">
+                        <div class="more-options">
+                            <a href="javascript:;" id="fullScreen"><i class="fa fa-expand" title="Full Screen"></i></a>
+                            <label class="form-label text-warning">Options </label>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" id="btnPreviewDesign" class="btn btn-primary"
+                                    title="View Report">Preview</button>
+                                <button type="button" id="btnDraftSave" class="btn btn-primary"
+                                    title="Save as Draft">Draft</button>
+                                <button type="button" id="btnResetDesign" class="btn btn-primary"
+                                    title="Reset to Default">Reset</button>
+                            </div>
+                        </div>
+
+                        <!--Text-formatting-->
+                        <div class="custom-text-formatting">
+                            <hr style="margin-top: 10px;margin-bottom: 10px;" />
+                            <label class="form-label text-warning">Custom Text Formatting</label>
+                            <!--Font Style-->
+                            <div class="mt-2" style="display:flex">
+                                <label class="form-label">Style : </label>
+                                <div class="mt-2 font-style" style="padding-left:18%">
+                                    <span id="font-bold-maker" title="Bold Text">
+                                        <i class="fa fa-bold" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="font-italic-maker" title="Italic Text">
+                                        <i class="fa fa-italic" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="font-underline-maker" title="Underline Text">
+                                        <i class="fa fa-underline" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--Font Alignment-->
+                            <div class="mt-2" style="display:flex;">
+                                <label class="form-label mt-2" style="margin-right: 1.5rem !important;">Align : </label>
+                                <div class="mt-2 font-style">
+                                    <span id="font-left-maker" title="Left Text">
+                                        <i class="fa fa-align-left" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="font-center-maker" title="Center Text">
+                                        <i class="fa fa-align-center" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="font-right-maker" title="Right Text">
+                                        <i class="fa fa-align-right" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="font-justify-maker" title="Justify Text">
+                                        <i class="fa fa-align-justify" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--Font Size-->
+                            <div class="mt-2">
+                                <label class="form-label mt-2">Size : </label>
+                                <input type="number" class="form-control form-control-sm text-right"
+                                    id="font-size-maker" value="13" />
+                            </div>
+                        </div>
+
+                        <div id="line-formatting" style="display:none;">
+                            <hr style="margin-top: 10px;margin-bottom: 10px;" />
+                            <label class="form-label text-warning">Custom Line Formatting</label>
+                            <br />
+                            <label class="form-label mt-2">Color : </label>
+                            <input type="color" id="line-color-maker"
+                                class="form-control form-control-sm form-control-color text-right" />
+
+                            <label class="form-label mt-2">Width : </label>
+                            <input type="number" class="form-control form-control-sm text-right"
+                                id="line-width-maker" />
+                            <br />
+                            <label class="form-label mt-2">Height : </label>
+                            <input type="number" class="form-control form-control-sm text-right"
+                                id="line-height-maker" />
+                            <br />
+
+                            <div style="display:flex;justify-content: flex-start;">
+                                <label class="form-label mt-2" style="margin-right: 2.8rem !important;">Type : </label>
+                                <div id="line-type-maker" class="mt-2  font-style">
+                                    <span id="line-solid-maker" title="Solid Line">
+                                        <i class="fa fa-solid-line" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="line-dashed-maker" title="Dashed Line">
+                                        <i class="fa fa-dashed" aria-hidden="true">----</i>
+                                    </span>
+                                    <span id="line-dotted-maker" title="Dotted Line">
+                                        <i class="fa-dotted" aria-hidden="true">......</i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Adjust height of the details rows-->
+                        <div id="detailToolbox" style="display:none;">
+                            <hr style="margin-top: 10px;margin-bottom: 10px;" />
+                            <label class="form-label text-warning">Custom Details</label>
+                            <div class="mt-2">
+                                <label class="form-label mt-2">Row Gap : </label>
+                                <input type="number" class="form-control form-control-sm text-right" id="txtEachRowGap"
+                                    value="20" />
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label mt-2">Decimal No. : </label>
+
+                                <input type="number" class="form-control form-control-sm text-right" id="txtDecimalNo"
+                                    onblur="validateDecimal()" value="2" min="0" max="4" maxlength="4"
+                                    onkeydown="return event.keyCode === 8 || event.keyCode === 46 || (event.keyCode >= 48 && event.keyCode <= 52) || (event.keyCode >= 96 && event.keyCode <= 100);"
+                                    onpaste="return false;" onclick="this.select()" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-section">
+                    <!--Preview Modal -->
+                    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog"
+                        aria-labelledby="previewModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 800px">
+                            <div class="modal-content">
+                                <div id="previewModalBody" class="modal-body" style="min-height:600px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom context menu (Right click)-->
+                <div id="customContextMenu" style="display: none;">
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li id="Copy" style="display: flex; justify-content: space-between;">
+                            <i class="fa fa-copy"><span class="ml-3"> Copy</span></i>
+                            <span style="margin-left: 10px;"> (ctrl + c)</span>
+                        </li>
+                        <li id="Paste" style="display: flex; justify-content: space-between;">
+                            <i class="fa fa-paste"><span class="ml-3"> Paste</span> </i>
+                            <span style="margin-left: 10px;"> (ctrl + v)</span>
+                        </li>
+                        <li id="Cut" style="display: flex; justify-content: space-between;">
+                            <i class="fa fa-cut"><span class="ml-3"> Cut</span></i>
+                            <span style="margin-left: 10px;"> (ctrl + x)</span>
+                        </li>
+                        <li id="Undo" style="display: flex; justify-content: space-between;">
+                            <i class="fa fa-undo"><span class="ml-3"> Undo</span></i>
+                            <span style="margin-left: 10px;"> (ctrl + z)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="site.js"></script>
+
+</body>
+
+</html>
